@@ -2,6 +2,7 @@ package com.booleanuk.api.requests;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 
@@ -21,7 +22,11 @@ public class AuthorsController {
 
     @GetMapping("/{id")
     public Author getOne(@PathVariable(name = "id") int id){
-        return this.theAuthors.getOne(id);
+        Author author = this.theAuthors.getOne(id);
+        if (author == null){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "dAVES NOT FOUNT MESSAGE");
+        }
+        return author;
     }
 
     @PostMapping
