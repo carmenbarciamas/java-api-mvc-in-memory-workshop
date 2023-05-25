@@ -20,7 +20,7 @@ public class AuthorsController {
         return this.theAuthors.getAll();
     }
 
-    @GetMapping("/{id")
+    @GetMapping("/{id}")
     public Author getOne(@PathVariable(name = "id") int id){
         Author author = this.theAuthors.getOne(id);
         if (author == null){
